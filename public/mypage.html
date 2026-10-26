@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>마이페이지 · ECONOVA</title>
+  <meta name="description" content="이코노바(ECONOVA) · 국내외 주식·경제 정보 통합 분석 플랫폼">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <script src="/js/theme-init.js"></script>
+  <link rel="preload" href="/vendor/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script defer src="/vendor/supabase.js"></script>
+  <script type="module" src="/js/pages/mypage.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="app-main">
+      <header id="topbar"></header>
+      <main id="main" class="content">
+        <section class="hero hero-slim profile-hero" aria-labelledby="my-name">
+          <img class="hero-art photo" src="/images/scenes/tree-photo.webp" alt="" aria-hidden="true">
+          <div class="quote-main">
+            <span class="avatar big" id="my-avatar" aria-hidden="true">·</span>
+            <div>
+              <p class="eyebrow">마이페이지</p>
+              <h1 class="quote-name" id="my-name">내 계정</h1>
+              <p class="sm muted" id="my-email"></p>
+            </div>
+          </div>
+          <span class="hero-brand" data-hero-logo aria-hidden="true"></span>
+        </section>
+
+        <p class="alert error" id="page-message" role="alert" hidden style="margin-top:18px"></p>
+
+        <div id="content" hidden>
+          <dl class="kpi-grid hero-kpis kpi-3" aria-label="계정 요약">
+            <div class="panel kpi"><dt class="kpi-label">가입일</dt><dd class="kpi-value" id="joined">-</dd></div>
+            <div class="panel kpi"><dt class="kpi-label">관심 종목</dt><dd class="kpi-value" id="watch-count">-</dd></div>
+            <div class="panel kpi"><dt class="kpi-label">이메일</dt><dd class="kpi-value small-value" id="email">-</dd></div>
+          </dl>
+
+          <div class="mypage-grid">
+            <section class="panel" aria-labelledby="profile-title">
+              <div class="panel-head">
+                <h2 class="panel-title" id="profile-title">프로필</h2>
+                <span class="panel-meta">다른 사용자에게 공개돼요</span>
+              </div>
+              <form class="panel-body form" id="profile-form" novalidate>
+                <p class="alert" id="profile-message" role="alert" hidden></p>
+                <div class="field">
+                  <label for="nickname">닉네임</label>
+                  <input class="input" id="nickname" minlength="2" maxlength="15" required aria-describedby="nickname-hint">
+                  <p class="hint" id="nickname-hint">2~15자, 한글·영문·숫자·밑줄</p>
+                </div>
+                <div class="field">
+                  <label for="bio">소개</label>
+                  <textarea class="textarea" id="bio" maxlength="200" aria-describedby="bio-count"></textarea>
+                  <p class="hint" id="bio-count">0 / 200</p>
+                </div>
+                <div><button class="btn primary" type="submit">저장</button></div>
+              </form>
+            </section>
+
+            <div class="mypage-side">
+              <section class="panel" aria-labelledby="password-title">
+                <div class="panel-head"><h2 class="panel-title" id="password-title">비밀번호</h2></div>
+                <div class="panel-body form">
+                  <p class="sm muted">가입한 이메일로 비밀번호 재설정 링크를 보내 드려요.</p>
+                  <p class="alert" id="password-message" role="alert" hidden></p>
+                  <div><button class="btn outline" id="send-reset" type="button">재설정 메일 받기</button></div>
+                </div>
+              </section>
+
+              <section class="panel danger-zone" aria-labelledby="delete-title">
+                <div class="panel-head"><h2 class="panel-title" id="delete-title">계정 삭제</h2></div>
+                <form class="panel-body form" id="delete-form" novalidate>
+                  <p class="sm muted">투자 기록, 관심 종목, 북마크, 사용자 정의 지표가 모두 삭제되고 되돌릴 수 없어요.
+                    작성한 게시글과 댓글은 남지만 작성자는 "탈퇴한 사용자"로 표시돼요.</p>
+                  <p class="alert" id="delete-message" role="alert" hidden></p>
+                  <div class="field">
+                    <label for="delete-confirm">확인을 위해 닉네임을 입력하세요</label>
+                    <input class="input" id="delete-confirm" autocomplete="off">
+                  </div>
+                  <div><button class="btn danger" type="submit">계정 삭제</button></div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer id="footer"></footer>
+    </div>
+  </div>
+</body>
+</html>

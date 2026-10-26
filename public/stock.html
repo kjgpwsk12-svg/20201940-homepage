@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>종목 · ECONOVA</title>
+  <meta name="description" content="이코노바(ECONOVA) · 국내외 주식·경제 정보 통합 분석 플랫폼">
+  <link rel="icon" href="/images/favicon.png" type="image/png">
+  <script src="/js/theme-init.js"></script>
+  <link rel="preload" href="/vendor/PretendardVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <script defer src="/vendor/supabase.js"></script>
+  <script type="module" src="/js/pages/stock.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar"></aside>
+    <div class="app-main">
+      <header id="topbar"></header>
+      <main id="main" class="content">
+        <p class="alert error" id="stock-error" role="alert" hidden></p>
+
+        <div id="stock" hidden>
+          <section class="hero hero-slim quote-hero" aria-labelledby="quote-name">
+          <img class="hero-art photo" src="/images/scenes/forest-photo.webp" alt="" aria-hidden="true">
+            <div class="quote-main">
+              <span class="sym-logo big" id="quote-logo" aria-hidden="true"></span>
+              <div>
+                <p class="quote-id" id="quote-id"></p>
+                <h1 class="quote-name" id="quote-name"></h1>
+                <button class="btn outline sm star-btn quote-watch" id="watch-toggle" type="button" aria-pressed="false"></button>
+              </div>
+            </div>
+            <div class="quote-right">
+              <div class="quote-side">
+                <p class="quote-price"><strong class="price" id="quote-price"></strong></p>
+                <p id="quote-change"></p>
+                <p class="xs muted" id="quote-time"></p>
+              </div>
+            </div>
+            <span class="hero-brand" data-hero-logo aria-hidden="true"></span>
+          </section>
+
+          <dl class="kpi-grid hero-kpis kpi-6" id="stats" aria-label="시세 요약"></dl>
+
+          <div class="detail-grid">
+            <section class="panel ink area-chart" aria-labelledby="chart-title">
+              <div class="panel-head">
+                <h2 class="panel-title" id="chart-title">가격 차트</h2>
+                <p class="chart-legend">
+                  <span><span class="legend-mark up">▲</span> 뉴스+상승(3% 이상)</span>
+                  <span><span class="legend-mark down">▼</span> 뉴스+하락</span>
+                  <span><span class="legend-mark" style="color:var(--accent)">●</span> 뉴스 있음</span>
+                </p>
+                <div class="seg" role="group" aria-label="기간" id="range" style="margin-left:auto">
+                  <button type="button" aria-pressed="false" data-range="1M">1개월</button>
+                  <button type="button" aria-pressed="true" data-range="3M">3개월</button>
+                  <button type="button" aria-pressed="false" data-range="6M">6개월</button>
+                  <button type="button" aria-pressed="false" data-range="ALL">전체</button>
+                </div>
+              </div>
+              <div class="chart-box" id="chart" role="img"
+                aria-label="일봉 차트. 표시된 날짜를 누르면 그날의 뉴스를 볼 수 있습니다. 아래 목록으로도 선택할 수 있습니다."></div>
+              <div class="moves">
+                <h3 class="moves-title">뉴스와 함께 크게 움직인 날 (±3%)</h3>
+                <ul class="chips" id="moves"></ul>
+              </div>
+            </section>
+
+            <section class="panel news-panel area-news" aria-labelledby="news-title">
+              <div class="panel-head">
+                <h2 class="panel-title" id="news-title">관련 뉴스</h2>
+                <button class="btn ghost sm" id="news-reset" type="button" hidden style="margin-left:auto">최신 뉴스</button>
+              </div>
+              <p class="day-info num" id="day-info" hidden></p>
+              <div class="news-scroll" aria-live="polite"><ul class="news-list" id="news"></ul></div>
+            </section>
+
+            <section class="panel area-info" aria-labelledby="info-title">
+              <div class="panel-head"><h2 class="panel-title" id="info-title">종목 정보</h2></div>
+              <dl class="info-list" id="info"></dl>
+            </section>
+
+            <section class="panel area-peers" aria-labelledby="peers-title">
+              <div class="panel-head">
+                <h2 class="panel-title" id="peers-title">같은 시장 종목</h2>
+                <a class="more-link" id="peers-more" href="/stocks">더보기</a>
+              </div>
+              <ul class="watch-mini" id="peers"></ul>
+            </section>
+
+            <section class="panel area-talk" aria-labelledby="talk-title">
+              <div class="panel-head">
+                <h2 class="panel-title" id="talk-title">종목 토론</h2>
+                <a class="more-link" id="talk-write" href="/write">글쓰기</a>
+              </div>
+              <ul class="community" id="talk"></ul>
+            </section>
+          </div>
+
+          <p class="xs muted" id="stock-source" style="margin-top:16px"></p>
+        </div>
+      </main>
+      <footer id="footer"></footer>
+    </div>
+  </div>
+</body>
+</html>
